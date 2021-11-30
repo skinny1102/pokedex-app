@@ -1,0 +1,51 @@
+.drawer{
+    width: 59px;
+    height: 170px;
+    position: fixed;
+    top: 200px;
+    left: 10%;
+    background: #000000;
+}
+.draw-login{
+    height: 70%;
+    width: 100%;
+    background: #54b564;
+    box-sizing: border-box;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 15px;
+  
+}
+.user-i{
+    padding-left: 15px;
+    display: block;
+    font-size: 30px;
+    color: #FFF;
+}
+.login-text{
+    display: block;
+    margin: 0px;
+    font-size: 15px;
+    padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+
+}
+.draw-search{
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    background:  #424242;
+    box-sizing: border-box;
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+.search-i{
+    font-size: 25px;
+    color: #FFF;
+}

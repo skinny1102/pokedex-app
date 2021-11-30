@@ -1,0 +1,44 @@
+.card-next-pokemon{
+    margin: 0;
+    padding: 0;
+    height: 140px;
+    width: 100%;
+    margin-top: 20px;
+    flex: 15%;
+    display: flex;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.detail-pokemon{
+    flex: 85%; 
+}
+.pev-pokemon{
+    flex: 50%;
+    background-color: #a4a4a4;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.next-pokemon{
+    flex: 50%;
+    background-color: #a4a4a4;;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.pev-pokemon>p{
+    text-align: center;
+    font-family:'Flexo-Bold' ;
+    font-size: 40px;
+    color: #fff;
+}
+.next-pokemon>p{
+    text-align: center;
+    font-family:'Flexo-Bold' ;
+    font-size: 40px;
+    color: #fff;
+}
+.next-pokemon:hover{
+    background: rgb(99, 184, 241);;
+}
+.pev-pokemon:hover{
+    background: rgb(99, 184, 241);;
+}
