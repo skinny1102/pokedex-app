@@ -1,11 +1,29 @@
 {{#section 'js'}}
     <script>
-        var type2 = document.querySelectorAll(".typePokemon2");
-        type2.forEach(function(type){
-               if(type.textContent==''){
-                type.classList.add('bgwhite')
-               }
+        var type2 = document.querySelectorAll(".typePokemon2")
+        var type1 = document.querySelectorAll(".typePokemon1")
+     
+        type1.forEach(function(typeOne,indextype1){
+                type2.forEach(function(typeTwo,indextype2){
+                        if(indextype1==indextype2){
+                            if(typeTwo.textContent==''){
+                                   typeTwo.classList.add('bgwhite')
+                            }
+                            if(typeOne.textContent==''&&typeTwo.textContent!=''){
+                                typeOne.textContent =typeTwo.textContent
+                               typeTwo.textContent=''
+                                typeTwo.classList.add('bgwhite')
+                            }else if(typeOne.textContent==''&&typeTwo.textContent==''){
+                                typeOne.classList.add('bgwhite')
+                            }
+                            
+                        }
+                        
+                })
         })
+        var disabled = document.querySelector('.disabled')
+        console.log(disabled)
+       // disabled.remove();
     </script>
 {{/section}}
 <div class="content">
@@ -21,7 +39,29 @@
                                     {{!-- <p> Tìm kiếm theo tên của chúng</p> --}}
                                 </div>
                         </div>
+                         <div class="paging-navition">
+                                    <ul>
+                                        
+                                        <li class="{{#unless go_prev}}  disabled {{/unless}}">
+                                            <a class="page-link" href="/?page={{prev}}" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        {{#each pageItem}}
+                                            <li ><a class="numberpage" href="/?page={{value}}">{{value}}</a></li>
+                                        {{/each}}
+                                    
+                                        <li class="page-item {{#unless go_next}}  disabled {{/unless}}" >
+                                            <a class="page-link" href="/?page={{next}}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                        </div>
                         <div class="card-pokemon-content">
+                             
                             {{#each pokemon}}
                             <div class="item-card-pokemon">
                                 <a href="/pokemon/{{idPokemon}}">
@@ -32,13 +72,14 @@
                                             <p>#001</p>
                                             <h5>{{name}}</h5>
                                             <div class="item-abilities-pokemon">
-                                                <p class="typePokemon1">{{nameCategory}}</p>
-                                                <p class="typePokemon2"></p>
+                                                <p class="typePokemon1">{{Type1}}</p>
+                                                <p class="typePokemon2">{{Type2}}</p>
                                             </div>
                                     </div>
                                 </a>
                             </div>   
                             {{/each}}
+                          
                         </div>         
                 </div>    
 </div>

@@ -1,11 +1,12 @@
 import {loadDB} from '../utils/db.js'
 const model = {
-     all: async ()=>{
-        const sqlstr=`select 
-        idPokemon, tblPokemon.name , gender,height,weight,hp,attack,defendse,specailAttack,specicalDefense,speed,description,image,tblCategory.name as nameCategory
-        from tblPokemon ,tblCategory
-        where tblPokemon.idCategory=tblCategory.idCategory
-        `
+     pageAllPokemon: async (start,end)=>{
+        const sqlstr=`select *from pokemonall order by idPokemon OFFSET ${start} ROW FETCH NEXT ${end} ROWS ONLY`
+        const result = await loadDB.load(sqlstr)
+        return result.recordset
+    },
+    countAllPokemon: async ()=>{
+        const sqlstr=`select COUNT(*) as total from pokemonall`
         const result = await loadDB.load(sqlstr)
         return result.recordset
     },
