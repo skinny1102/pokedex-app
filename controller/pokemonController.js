@@ -1,7 +1,9 @@
+import {modelPokemon} from '../models/pokemon.js'
 class pokemonController{
         // [GET] //
-        index(req, res){
-            res.render('home')
+      async  index(req, res){
+            const result = await modelPokemon.all('');
+            res.render('home',{pokemon:result})
         }
         //[Get] pokemon/:id
         pokemonid(req,res){

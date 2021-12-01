@@ -116,6 +116,8 @@
     justify-content: center;
     background: rgb(207, 215, 231);
     border-radius: 6px 6px 0 0 ;
+    width: 100%;
+    height: 70%;
 }
 .item-infor-pokemon{
     flex: 25%;
@@ -145,7 +147,20 @@
     display: flex;
     justify-content: center;
 }
-.item-abilities-pokemon>p{
+.item-abilities-pokemon>.typePokemon1{
+    flex: 30%;
+    font-family: 'Flexo-Bold';
+    font-weight: 400;
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    background: chartreuse;
+    margin-left: 20px;
+    padding: 2px 10px 2px 10px;
+    border-radius: 4px;
+}
+.item-abilities-pokemon>.typePokemon2{
+    flex: 30%;
     font-family: 'Flexo-Bold';
     font-weight: 400;
     font-size: 15px;
@@ -153,6 +168,10 @@
     margin-bottom: 15px;
     background: chartreuse;
     margin-left: 10px;
+    margin-right: 30px;
     padding: 2px 10px 2px 10px;
     border-radius: 4px;
+}
+.bgwhite{
+    background-color: white !important;
 }
