@@ -4,6 +4,10 @@
     src: url('../font/ShipporiAntiqueB1-Regular.ttf');
   }
   @font-face {
+    font-family:  Flexo-Medium;
+    src: url('../font/Flexo-Medium.ttf');
+  }
+@font-face {
     font-family: Flexo-Bold;
     src: url('../font/Flexo-Bold.ttf');
   }

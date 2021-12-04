@@ -49,7 +49,7 @@
                                             </a>
                                         </li>
                                         {{#each pageItem}}
-                                            <li ><a class="numberpage" href="/?page={{value}}">{{value}}</a></li>
+                                            <li ><a class="numberpage {{#if isDisabled}}  disabled {{/if}}" href="/?page={{value}}">{{value}}</a></li>
                                         {{/each}}
                                     
                                         <li class="page-item {{#unless go_next}}  disabled {{/unless}}" >
@@ -69,7 +69,7 @@
                                     <img   src="{{image}}"/>
                                     </div>
                                     <div class="item-infor-pokemon">
-                                            <p>#001</p>
+                                            <p>#{{stt idPokemon}}</p>
                                             <h5>{{name}}</h5>
                                             <div class="item-abilities-pokemon">
                                                 <p class="typePokemon1">{{Type1}}</p>

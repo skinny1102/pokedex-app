@@ -12,7 +12,16 @@ const __dirname = path.resolve(path.dirname(''));
 
 app.engine('handlebars', engine({
     helpers:{
-        section: express_handlebars_sections() 
+        section: express_handlebars_sections() ,
+        stt:(a)=>{
+            if(a<10){
+                return '00'+a
+            }if(a>=10&&a<100){
+                return '0'+a
+            }if(a>=100){
+                return a
+            }
+        }
     }
 }));
 app.set('view engine', 'handlebars');
