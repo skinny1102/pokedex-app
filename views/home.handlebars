@@ -1,3 +1,7 @@
+{{#section 'css'}}
+    <link rel="stylesheet" href="/public/css/modal.css">
+{{/section}}
+
 {{#section 'js'}}
     <script>
         var type2 = document.querySelectorAll(".typePokemon2")
@@ -22,9 +26,10 @@
                 })
         })
         var disabled = document.querySelector('.disabled')
-        console.log(disabled)
+       // console.log(disabled)
        // disabled.remove();
     </script>
+    <script src="/public/js/search.js"></script>
 {{/section}}
 <div class="content">
                 <div class="content-center">
@@ -33,8 +38,8 @@
                                 <div class="card-rt">
                                     <h3>WHO THAT POKEMON ?</h3>
                                     <div class="card-rt-content">
-                                    <input type="text" placeholder="Who that pokemon ?">
-                                    <button class="btn-search">Tìm kiếm </button>
+                                    <input type="text" class="namePokemon" placeholder="Who that pokemon ?">
+                                    <button id="btn-search" class="btn-search">Tìm kiếm </button>
                                     </div>
                                     {{!-- <p> Tìm kiếm theo tên của chúng</p> --}}
                                 </div>
@@ -60,8 +65,8 @@
                                         </li>
                                     </ul>
                         </div>
+
                         <div class="card-pokemon-content">
-                             
                             {{#each pokemon}}
                             <div class="item-card-pokemon">
                                 <a href="/pokemon/{{idPokemon}}">
@@ -79,8 +84,27 @@
                                 </a>
                             </div>   
                             {{/each}}
-                          
                         </div>         
-                </div>    
+                </div>   
+                 
 </div>
-     
+{{!-- MODAL RỖNG    --}}
+<div class="modal-check">
+    <div class="modal-container">
+        <div class="header-modal">
+            <i class="fas fa-times"></i>
+        </div>
+       <div class="modal-body">
+        <p> TÊN POKEMON ĐANG RỖNG</p>
+        <button class="close-modal">Đóng</button>
+       </div>
+      
+    </div>
+</div>
+{{!-- MODAL LOADING  SEARCH  --}}
+<div class="modal-loading">
+    <div class="modal-loading-container">
+        <i class="fas fa-spinner"></i>
+    </div>
+</div>
+

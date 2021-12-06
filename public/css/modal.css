@@ -1,0 +1,124 @@
+.modal-check{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0,0.4);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: "Flexo-Bold";
+    font-style: normal;
+    display: none;
+    margin-top: -30px;
+   
+}
+
+.modal-container{
+    top: 100px;
+    height: 150px;
+    width: 300px;
+    background-color: #fff;
+    opacity: 1 !important;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    animation:action ease-in-out 0.5s ;
+  
+}
+@keyframes action {
+    from {transform:translateY(-200px) ;}
+    to {transform:translateX(0) }
+}
+.header-modal{
+ display: flex;
+justify-content: right;
+
+}
+.header-modal>i{
+    padding-right: 10px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+.header-modal>i:hover{
+    opacity: 0.8;
+}
+.modal-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.modal-body>p{
+    font-weight: 600;
+    font-size: 15px;
+}
+.close-modal{
+    margin-top: 10px;
+    background-color: rgb(243, 60, 54);
+    border-radius: 3px;
+    color: #fff;
+    border: none;
+    padding: 8px 10px ;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+}
+.disabled-modal{
+    display: none ;
+}
+.enabled-modal{
+    display: flex;
+}
+.modal-loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0,0.2);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: "Flexo-Bold";
+    font-style: normal;
+    display: none;
+}
+.modal-loading-container{
+    top: 100px;
+    height: 50px;
+    width: 50px;;
+    opacity: 1 !important;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; 
+    justify-content: center;
+    align-content: center;
+}
+.modal-loading-container>i{
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+    color: #fff;
+}
+.enabled-loading{
+    display: flex;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

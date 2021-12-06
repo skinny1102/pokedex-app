@@ -1,3 +1,7 @@
+{{#section 'js'}}
+<script src="/public/js/chiso.js"></script>
+
+{{/section}}
 <div class="content">
             <div class="content-center">
                     {{!-- SEARCH input --}}
@@ -11,41 +15,172 @@
                         </div>
                         <div class="detail-pokemon">
                             <div class="namePokemon">
-                                <p class="name-pokemon">Bulbasaur</p>
-                                <p class="number-pokemon">#001</p>
+                                <p class="name-pokemon">{{detailsPokemon.name}}</p>
+                                <p class="number-pokemon">#{{stt detailsPokemon.idPokemon}}</p>
                             </div>
 
                             <div class="pokemon-see-details">
                                 <div class="left-details" >
                                     <div class="image-pokemon">
-                                        <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="">
+                                        <img src="{{detailsPokemon.image}}" alt="">
                                     </div>
                                     <div class="chi-so-pokemon">
-
+                                        <p>Stats</p>
+                                        <ul class="table-stats">
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value={{detailsPokemon.hp}} class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>  
+                                                
+                                                </ul>
+                                                    <span>HP</span>
+                                            </li>
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value="{{detailsPokemon.attack}}" class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>  
+                                                </ul>
+                                                   <span>Attack</span>
+                                            </li>
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value="{{detailsPokemon.defendse}}" class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>  
+                                                </ul>
+                                                <span>Defense</span>
+                                            </li>
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value="{{detailsPokemon.specailAttack}}" class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>  
+                                                </ul>
+                                                 <span>Special <br> Attack</span>
+                                            </li>
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value="{{detailsPokemon.specicalDefense}}" class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>  
+                                                
+                                                </ul>
+                                                    <span>Special<br> Defense</span>
+                                            </li>
+                                            <li>
+                                                <ul class="gauge">
+                                                    <li data-value="{{detailsPokemon.speed}}" class="meter"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>     
+                                                </ul>
+                                                 <span>Speed</span>
+                                            </li>
+                                        </ul>
                                     </div>
 
                                 </div>
+                                {{!-- CỘT PHẢI --}}
                                 <div class="right-details">
                                     <div class="description">
-                                        <p>There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger</p>
+                                        <p>{{detailsPokemon.description}}</p>
                                     </div>
                                     <div class="theluc">
                                      <div class="bang-the-luc">
-                                         <div class="gr gr-hieght">
+                                         <div class="gr gr-height">
                                             <p class="gr-text">Height</p>
-                                            <p class="gr-read">2' 04"</p>
+                                            <p class="gr-read gr-height-dl">{{detailsPokemon.height}}</p>
                                          </div>
                                          <div class="gr gr-category">
                                             <p class="gr-text">Category</p>
-                                            <p class="gr-read">Seed</p>
+                                            <p class="gr-read gr-category">{{detailsPokemon.nameCategory}}</p>
                                          </div>
                                          <div class="gr gr-weight">
                                             <p class="gr-text">Weight</p>
-                                            <p class="gr-read">15.2 lbs</p>
+                                            <p class="gr-read gr-weight-dl">{{detailsPokemon.weight}}</p>
                                          </div>
                                          <div class="gr gr-abilities">
                                             <p class="gr-text">Abilities</p>
-                                            <p class="gr-read">Overgrow</p>
+                                            <p class="gr-read">{{detailsPokemon.ability}}</p>
                                          </div>
                                          <div class="gr gr-abilities">
                                             <p class="gr-text">Gender</p>
@@ -59,7 +194,21 @@
 
                                     </div>
                                     <div class="type-pokemon">
-
+                                        <div class="type-cls">
+                                                <p class="type-title"> Type</p>
+                                                <div class="item-type-cls">
+                                                    <p class="type1">{{detailsPokemon.Type1}}</p>
+                                                    <p class="type2">{{detailsPokemon.Type2}}</p>
+                                                </div>
+                                        </div>
+                                        <div class="weekness">
+                                                <p class="weekness-title">  Weebness</p>
+                                                <div class="item-weekness-cls">
+                                                    <p>No information</p>
+                                                    {{!-- <p>Grass</p>
+                                                    <p>Poison</p> --}}
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

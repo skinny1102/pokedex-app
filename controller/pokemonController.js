@@ -2,21 +2,22 @@ import {modelPokemon} from '../models/pokemonModel.js'
 class pokemonController{
         // [GET] //
       async  index(req, res){
-            const numberofPages = 8;
+            const recordTotal = await modelPokemon.countAllPokemon();
 
-            const page = +req.query.page ||1;
-            if(page<0){
+            const numberofPages = 8;
+            const total = recordTotal[0].total
+
+            const nPages = Math.ceil(total/numberofPages)
+
+            var page = +req.query.page ||1;
+  
+            if(page<0 ||page>nPages){
                 page=1;
             }
-
             const startRow = (page-1) *numberofPages
             const endRow =page*numberofPages 
 
             const result = await modelPokemon.pageAllPokemon(startRow,endRow);
-            const recordTotal = await modelPokemon.countAllPokemon();
-
-            const total = recordTotal[0].total
-            const nPages = Math.ceil(total/numberofPages)
             // const nPages = 40;
             // Phân trang
             const pageItem = [];
@@ -74,8 +75,13 @@ class pokemonController{
        async pokemonid(req,res){
             const id = req.params.id
             const result = await modelPokemon.detailsPokemon(id)
-            console.log(result[0])
             res.render('detailspokemon',{detailsPokemon:result[0]})
+        }
+
+        async searchNamePokemon(req,res){
+            const keyword = req.query.keyword
+            const result = await modelPokemon.searchPokemonName(keyword)
+            res.send(result)
         }
 }
 

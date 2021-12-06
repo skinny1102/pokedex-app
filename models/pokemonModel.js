@@ -12,7 +12,12 @@ const model = {
         return result.recordset
     },
     detailsPokemon:async(id)=>{
-        const sqlstr=`select *from pokemonall where idPokemon=${id}`
+        const sqlstr=`select *from detailsPokemon where idPokemon=${id}`
+        const result = await loadDB.load(sqlstr)
+        return result.recordset
+    },
+    searchPokemonName:async(keyword)=>{
+        const sqlstr=`select *from pokemonall where name LIKE N'%${keyword}%'`
         const result = await loadDB.load(sqlstr)
         return result.recordset
     }
