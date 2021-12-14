@@ -4,20 +4,23 @@
 
 {{#section 'js'}}
     <script> 
-      //  $("#namePokemon").keyup(function(event) {
-     //       if (event.keyCode === 13) {
-     //           $("#btn-search").click();
-     //       }
-     //   });
-        $("#select-sort").remove();
-    
+        $("#namePokemon").keyup(function(event) {
+           if (event.keyCode === 13) {
+                $("#btn-search").click();
+            }
+       });
+ 
+       // console.log(disabled)
+       // disabled.remove();
     </script>
-    <script src="/public/js/search.js"></script>
+    {{!-- <script src="/public/js/search.js"></script> --}}
+    <script src="/public/js/pokemonhome.js"></script>
+
 {{/section}}
 <div class="content">
                 <div class="content-center">
                     {{!-- SEARCH input --}}
-                        {{!-- <div class="card-search-center">
+                        <div class="card-search-center">
                                 <div class="card-rt">
                                     <h3>WHO THAT POKEMON ?</h3>
                                     <div class="card-rt-content">
@@ -26,36 +29,23 @@
                                     </div>
                                     {{!-- <p> Tìm kiếm theo tên của chúng</p> --}}
                                 </div>
-                        </div> --}}
-                         {{!-- <div class="paging-navition">
+                        </div>
+                         <div class="paging-navition">
                              <div class="box-top">
-                                     <ul>
-                                        <li class="{{#unless go_prev}}  disabled {{/unless}}">
-                                            <a class="page-link" href="/?page={{prev}}" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        {{#each pageItem}}
-                                            <li ><a class="numberpage {{#if isDisabled}}  disabled {{/if}}" href="/?page={{value}}">{{value}}</a></li>
-                                        {{/each}}
-                                    
-                                        <li class="page-item {{#unless go_next}}  disabled {{/unless}}" >
-                                            <a class="page-link" href="/?page={{next}}" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                     <div class="dropdown-lef" id="select-sort">
                                             <select id="xapxep">
-                                            <option value="none">Sort by ...</option>
+                                            <option value="none">Sort by default ...</option>
                                             <option value="az"> <a href="#">A- Z</a></option>
                                             <option value="za" >Z-A</option>
                                             </select>
                                     </div>
                              </div>                  
-                        </div> --}}
+                        </div>
+                        <div class="listingTable">
+                                <a href="javascript:void(0)" id="btn_prev"> &laquo; Prev</a>
+                                <a href="javascript:void(0)" id="btn_next">Next &raquo;</a>
+                        </div>
+                                
                         <div class="card-pokemon-content">
                             {{#each pokemon}}
                             <div class="item-card-pokemon">
@@ -67,8 +57,8 @@
                                             <p>#{{stt idPokemon}}</p>
                                             <h5>{{name}}</h5>
                                             <div class="item-abilities-pokemon">
-                                                <p class="typePokemon1">{{Type1}}</p>
-                                                <p class="typePokemon2">{{Type2}}</p>
+                                                <p class="typePokemon1">{{Type}}</p>
+                                                {{!-- <p class="typePokemon2">{{Type2}}</p> --}}
                                             </div>
                                     </div>
                                 </a>
@@ -76,6 +66,7 @@
                             {{/each}}
                         </div>         
                 </div>   
+          
                  
 </div>
 {{!-- MODAL RỖNG    --}}

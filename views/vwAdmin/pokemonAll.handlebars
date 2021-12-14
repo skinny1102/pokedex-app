@@ -1,0 +1,97 @@
+
+{{#section 'js'}}
+    <script> 
+   //   var btndelete = document.querySelectorAll('.btn-delete')
+//
+    //    btndelete.forEach((element,index)=>{
+    //       var idPk =element.getAttribute('data-id')  
+    //       $(document).on('show.bs.modal',"#modaldelete", function (e) {
+              
+   //         })
+     //   })
+     var id ; 
+            $('#modaldelete').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) 
+               id = button.data('id')   
+            })
+            
+            var btndelete = document.getElementById("btn-modal-delete")
+                btndelete.onclick =()=>{
+                var formdelete= document.getElementById('form-modal-delete')
+                formdelete.action = '/admin/pokemon/'+id+'?_method=DELETE'
+                formdelete.submit()
+            }
+    </script>
+
+{{/section}}
+<div class="container">
+   
+    <h3 class="text-center mt-4 mb-3">Bảng quản lý Pokemon</h3>
+    <div class="d-flex justify-content-between">
+       <a href="/admin/pokemon/add" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Pokemon</a> 
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm tên hoặc ID" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    
+    <table class="table  table-hover mt-3 ">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pokemon}}
+        <tr>  
+            <th scope="row">{{idPokemon}}</th>
+            <td><img src="{{image}}" style="width:50px"/></td>
+            <td>{{name}}</td>
+            <td>{{Type}}</td>
+            <td>{{hidestring description}}</td>
+            <td class="row">
+                 <button class=" btn btn-success col col-5"><i class="fas fa-edit"></i></button>   
+                 {{!-- <button class=" btn btn-danger col col-5 ml-1"></button>   --}}
+                 <button type="button" class="btn btn-danger col col-5 ml-1 btn-delete" data-toggle="modal" 
+                    data-target="#modaldelete"
+                    data-id="{{idPokemon}}">
+                    <i class="fas fa-trash"></i>
+                </button> 
+            </td>
+          
+        </tr>
+        {{/each}}
+
+        
+    </tbody>
+    </table>
+</div>
+<form method="POST" id="form-modal-delete">
+</form>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Bạn có chắc muốn xóa
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="btn-modal-delete">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<div class="container">
+    <h3 class="text-center mt-3">Thêm Pokemon</h3>
+    <div class="card">
+    <div class="card-body bg-light mb-3">
+
+    <form action="/admin/pokemon/add" method="post">
+        <div class="d-flex w-100">
+            <div class="d-flex flex-row text-danger flex-wrap">
+            {{#each err}}
+                <div class="p-2">*{{msg}}</div>
+            {{/each}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-6">
+                <div class="form-group ">
+                    <label for="namePokemon" >Tên Pokemon</label>
+                    <input type="text" class="form-control " name="namePokemon" id="namePokemon" placeholder="Tên">
+                </div>
+                <div class="d-flex align-items-start">
+                    <div class="form-group ">
+                        <label for="height" >Height</label>
+                        <input type="text" class="form-control " name="height" id="height" placeholder="Inch">
+                    </div>
+                    <div class="form-group ml-1">
+                        <label for="weight" >Weight</label>
+                            <input type="text" class="form-control " name="weight" id="weight" placeholder="Pound">  
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="form-group">
+                        <label for="hp"  >Hp</label>
+                        <input type="text" class="form-control w-50 " name="hp" id="hp" placeholder="">
+                    </div>
+                    <div class="form-group ml-1 ">
+                        <label for="attack" >Attack</label>
+                        <input type="text" class="form-control w-50" name="attack" id="attack" placeholder="">  
+                    </div>
+                    <div class="form-group ml-1 ">
+                        <label for="defendse"  >Defendse</label>
+                        <input type="text" class="form-control w-50" name="defendse" id="defendse" placeholder="">  
+                    </div>
+                    <div class="form-group ml-1">
+                        <label for="speed"  >Speed</label>
+                        <input type="text" class="form-control w-50" name="speed" id="speed" placeholder="">  
+                    </div>
+                </div>
+                 <div class="d-flex align-items-start">
+                    <div class="form-group ">
+                        <label for="specailAttack" >SpecailAttack</label>
+                        <input type="text" class="form-control " name="specailAttack" id="specailAttack" placeholder="">
+                    </div>
+                    <div class="form-group ml-1">
+                        <label for="specailDefendse" >SpecicalDefense</label>
+                        <input type="text" class="form-control " name="specailDefendse" id="specailDefendse" placeholder="">  
+                    </div>
+                </div>
+             <div class="form-group">
+                <label for="description">Descripton</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            </div>
+            <div class="col col-6">
+                <div class="d-flex ">
+                    <div class="form-group">
+                        <label for="idType1">Type 1</label>
+                            <select id="idType1" name="idType1" class="form-control">
+                                <option value ="0" selected>Choose...</option>
+                                <option value ="0">Không</option>
+                                {{#each type }}
+                                    <option value="{{idType}}">{{name}}</option>
+                                {{/each}}
+                                
+                        </select>
+                    </div>
+                </div>
+                  <div class="d-flex ">
+                 <div class="form-group">
+                        <label for="idCategory">Category</label>
+                            <select id="idCategory" name="idCategory" class="form-control">
+                                <option value ="0" selected>Choose...</option>
+                                <option value ="0">Không</option>
+                                {{#each category}}
+                                     <option value="{{idCategory}}">{{name}}</option>
+                                {{/each}}
+                               
+                        </select> 
+                </div>
+                 <div class="form-group ml-1">
+                        <label for="idAbility">Ability</label>
+                            <select id="idAbility" name="idAbility" class="form-control">
+                                <option value ="0"selected>Choose...</option>
+                                <option value="0">Không</option>
+                                {{#each ability}}
+                                     <option value="{{idAbility}}">{{name}}</option>
+                                {{/each}}
+                               
+                        </select> 
+                </div>
+                  </div>
+
+                  <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="text" class="form-control " id="image" name="image" placeholder="http://image..."> 
+                        <small id="imagehelp" class="form-text text-muted">Link hình ảnh.</small>
+                        <div class="img">
+                                <img src="/public/img/pokeball.png" class="rounded  d-block" alt="..." style="width:150px">
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto w-100 mb-3">
+            <button class="btn btn-success mx-auto d-block" style="width:100px" type="submit">Thêm</button>
+        </div>    
+    </form>        
+    </div>
+    </div>
+
+</div>
