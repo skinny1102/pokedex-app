@@ -1,10 +1,11 @@
 import {modelUser} from '../models/userModel.js'
+import {modelPokemon} from '../models/pokemonModel.js'
 class userController{
    
 
     //[Get] admin/login
     getindexloginAdmin(req,res,next){
-        res.render('vwAdmin/admin',{layout:'layoutAdmin'})
+        res.render('vwAdmin/adminLogin',{layout:'layoutLogin'})
     }
     //[POST] admin/login
     async loginAdmin(req,res,next){
@@ -12,30 +13,38 @@ class userController{
         const {username,password} = req.body
         if(!username){err.push({msg:"Username trống "})}
         if(!password){err.push({msg:"Password trống "})}
-     
         if(err==""){
             const user = await modelUser.selectUser(username,password)
             if(user!=""){
                 //Thực hiện lưu vào session và rederice vào trang quản trị 
-                res.json(user)
+                delete user[0].password
+                req.session.User = user
+                req.session.isAuth = true;
+                res.redirect('/admin');
                 
             }else{
                 err.push({msg:"Tài khoản hoặc mật khẩu không chính xác "})
+                req.session.isAuth = false;
                 res.render('vwAdmin/adminLogin',{layout:'layoutAdmin',err})
                 // res.render('vwAdmin/admin',{layout:'layoutAdmin',err:[{msg:"Tài khoản hoặc mật khẩu không chính sác"}]})
             }
             
         }
         else{ 
-            console.log(err)
+            req.session.isAuth = false;
             res.render('vwAdmin/adminLogin',{layout:'layoutAdmin',err})
         }
            
     }
+    logout(req,res,next){
+        req.session.isAuth = false;
+        res.redirect('/admin/login')
+    }
     //GET /admin
-    indexAdmin (req,res,next){
-        
-        res.render('vwAdmin/indexadmin',{layout:'layoutAdmin'})
+    async indexAdmin (req,res,next){
+        const recordTotal = await modelPokemon.countAllPokemon();
+
+        res.render('vwAdmin/indexadmin',{layout:'layoutAdmin',total:recordTotal[0].total})
     }
 }
 export default new userController()

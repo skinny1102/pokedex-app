@@ -4,84 +4,93 @@ import {modelAbility} from '../models/abilityModel.js'
 import {modelType} from '../models/typeModel.js'
 class pokemonController{
         // [GET] //admin/pokemon
-      async  index(req, res){
-        const result = await modelPokemon.AllPokemon();
+        async  index(req, res){
+            
+         
+
+            const recordTotal = await modelPokemon.countAllPokemon();
+            const numberofPages = 8;
+            const total = recordTotal[0].total
         
-        res.render('vwAdmin/pokemonAll',{ layout:"layoutAdmin",pokemon:result })
-            // const recordTotal = await modelPokemon.countAllPokemon();
-            // const numberofPages = 8;
-            // const total = recordTotal[0].total
-
-            // const nPages = Math.ceil(total/numberofPages)
-
-            // var page = +req.query.page ||1;
+            const nPages = Math.ceil(total/numberofPages)
+            //  const nPages = 40;
+            var page = +req.query.page ||1;
   
-            // if(page<0 ||page>nPages){
-            //     page=1;
-            // }
-            // const startRow = (page-1) *numberofPages
-            // const endRow =page*numberofPages 
+            if(page<0 ||page>nPages){
+                page=1;
+            }
+            const startRow = (page-1) *numberofPages
+            const endRow =page*numberofPages 
 
-            // const result = await modelPokemon.pageAllPokemon(startRow,endRow);
-            // const nPages = 40;
-            // Phân trang
-            // const pageItem = [];
-            // const pg = 4;
-            // const disableditem= {
-            //     value:'...',
-            //     isActive : false,
-            //     isDisabled:true
-            // }
-            //     if(nPages<pg){
-            //         for(let i=1;i<=nPages;i++){
-            //             const item ={
-            //                 value:i,
-            //                 isActive : i===page
-            //             }
-            //             pageItem.push(item)
-            //         }
+            const result = await modelPokemon.pageAllPokemon(startRow,endRow);
+            
+     
+            const pageItem = [];
+            const pg = 4;
+            const disableditem= {
+                value:'...',
+                isActive : false,
+                isDisabled:true
+            }
+                if(nPages<pg){
+                    for(let i=1;i<=nPages;i++){
+                        const item ={
+                            value:i,
+                            isActive : i===page
+                        }
+                        pageItem.push(item)
+                    }
                    
-            //     }
-            //     if(nPages>pg){
-            //         if(page<=pg){
-            //             for(let i=(pg-(pg-1));i<=pg;i++){
-            //                 const item ={
-            //                     value:i,
-            //                     isActive : i===page
-            //                 }
-            //                 pageItem.push(item)
-            //             }
-            //             pageItem.push(disableditem)
+                }
+                if(nPages>pg){
+                    if(page<=pg){
+                        for(let i=(pg-(pg-1));i<=pg;i++){
+                            const item ={
+                                value:i,
+                                isActive : i===page
+                            }
+                            pageItem.push(item)
+                        }
+                        pageItem.push(disableditem)
 
-            //         }     
-            //         if(page>pg){
-            //             pageItem.push(disableditem)
-            //             for(let i=page-3;i<=page;i++){
-            //                 const item ={
-            //                     value:i,
-            //                     isActive : i===page
-            //                 }
-            //                 pageItem.push(item)
-            //             }
-            //             pageItem.push(disableditem)
-            //         }
-            //     }
+                    }     
+                    if(page>pg){
+                        pageItem.push(disableditem)
+                        for(let i=page-3;i<=page;i++){
+                            const item ={
+                                value:i,
+                                isActive : i===page
+                            }
+                            pageItem.push(item)
+                        }
+                        pageItem.push(disableditem)
+                    }
+                }
                         
-
-            // res.render('vwAdmin/pokemonAll',{ layout:"layoutAdmin",pokemon:result
-            //     // ,
-            //     // pageItem ,
-            //     // prev:page-1,
-            //     // next:page+1,
-            //     // go_prev : page >1,
-            //     // go_next: page<nPages
-            // })
+         
+            res.render('vwAdmin/pokemonAll',{ layout:"layoutAdmin",pokemon:result
+                ,
+                pageItem ,
+                prev:page-1,
+                next:page+1,
+                go_prev : page >1,
+                go_next: page<nPages
+            })
         }
         //[GET] pokemon/:id (Detail Pokemon)
        async pokemonid(req,res){
             const id = req.params.id
             const result = await modelPokemon.detailsPokemon(id)
-            res.render('detailspokemon',{detailsPokemon:result[0]})
+            
+            const recordTotal = await modelPokemon.countAllPokemon();
+            const total = recordTotal[0].total
+            res.render('detailspokemon',{
+                detailsPokemon:result[0],
+                cangoprev:Number(id)>1,
+                cangonext:Number(id)<total,
+                goprev:Number(id)-1,
+                gonext:Number(id)+1
+            })
         }
 
         async searchNamePokemon(req,res){
@@ -91,12 +100,14 @@ class pokemonController{
         }
         //[GET] pokemon
         async getindexPokemon(req,res){
-          res.render('pokemon')
+       
+            res.render('pokemon')
         }
+
         //[GET]pokemon
         async getAllPokemon(req,res){
             const result = await modelPokemon.AllPokemon();
-            console.log(result)
+        
             res.json(result)
         }
         async indexAddpokemon(req,res,next){
@@ -105,9 +116,10 @@ class pokemonController{
             const type = await modelType.loadType();
             res.render("vwAdmin/addPokemon",{layout:'layoutAdmin',category,ability,type}) 
         }
+
         async Addpokemon(req,res,next){
             const resultLast = await modelPokemon.banghicuoiPokemon();
-            const idLast = resultLast[0].idPokemon
+             const idLast = resultLast[0].idPokemon
             const idPokemon = idLast+1
             var err = []
             const {namePokemon,
@@ -135,7 +147,7 @@ class pokemonController{
                         height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
                         speed ,description ,image ,idCategory ,
                         idType1 ,idAbility)   
-                        res.json("Thành công")
+                        res.redirect("/admin/pokemon/add")
                 } catch (error) {
                     console.log(error);
                     res.json("Lỗi")
@@ -156,6 +168,33 @@ class pokemonController{
                 try {
                   await modelPokemon.deletePokemon(id)  
                   res.redirect('/admin/pokemon')
+                } catch (error) {
+                    res.json(error)
+                }
+       }
+       //[GET] admin/pokemon/:id
+       async geteditpokemon(req,res,next){
+            const id = req.params.id
+            const result = await modelPokemon.detailsPokemon(id)
+ 
+            const category = await modelCategory.loadCategory();
+            const ability = await modelAbility.loadAbility()
+            const type = await modelType.loadType();
+            res.render("vwAdmin/editPokemon",{layout:'layoutAdmin',pokemon:result[0],category,ability,type}) 
+       }
+       async editpokemon(req,res,next){
+            const id = req.params.id
+            const {idPokemon,namePokemon,
+                height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
+                speed ,description ,image ,idCategory ,
+                idType ,idAbility} = req.body
+                try {
+
+                        await modelPokemon.editpokemon(idPokemon,namePokemon,
+                        height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
+                        speed ,description ,image ,idCategory ,
+                        idType ,idAbility)
+                        res.redirect('/admin/pokemon')
                 } catch (error) {
                     res.json(error)
                 }

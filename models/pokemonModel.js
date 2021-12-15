@@ -7,7 +7,7 @@ const model = {
         return result.recordset
     },
     countAllPokemon: async ()=>{
-        const sqlstr=`select COUNT(*) as total from pokemonall`
+        const sqlstr=`select COUNT(*) as total from tblPokemon`
         const result = await loadDB.load(sqlstr)
         return result.recordset
     },
@@ -37,10 +37,6 @@ const model = {
 			height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
 			speed ,description ,image ,idCategory ,
 			idType,idAbility)=>{
-                console.log(idPokemon,namePokemon,
-                    height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
-                    speed ,description ,image ,idCategory ,
-                    idType,idAbility);
             const sqlstr = `exec addPokemon 
                 @idPokemon=${idPokemon} ,
                 @namePokemon='${namePokemon}',
@@ -62,6 +58,29 @@ const model = {
         },
          deletePokemon :async  (id)=>{
                 const sqlstr = `exec deletePokemon ${id}`
+                const result = await loadDB.load(sqlstr)
+                return result.recordset
+        },
+        editpokemon : async ( idPokemon,namePokemon,
+			height,weight ,hp ,attack,defendse ,specailAttack ,specailDefendse ,
+			speed ,description ,image ,idCategory ,
+			idType,idAbility)=>{
+                const sqlstr = `exec updatePokemon 
+                @idPokemon=${idPokemon} ,
+                @namePokemon='${namePokemon}',
+                @height =${height},
+                @weight =${weight} ,
+                @hp =${hp} ,
+                @attack =${attack},
+                @defendse =${defendse},
+                @specailAttack =${specailAttack} ,
+                @specailDefendse =${specailDefendse} ,
+                @speed =${speed} ,
+                @description ='${description}',
+                @image ='${image}',
+                @idCategory=${idCategory} ,
+                @idType =${idType} ,
+                @idAbility =${idAbility} `
                 const result = await loadDB.load(sqlstr)
                 return result.recordset
         }

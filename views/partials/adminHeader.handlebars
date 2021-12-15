@@ -35,12 +35,10 @@
         </button>
         <div class="dropdown-menu" >
             <!-- Dropdown menu links -->
-            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i>  Đăng xuất</a>
+            <a class="dropdown-item" href="/admin/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
             <a class="dropdown-item" href="#"> <i class="fas fa-lock-open"></i> Đổi mật khẩu</a>
         </div>
         </div>
-  
-    
 {{!--    
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,3 +46,8 @@
     </form> --}}
   </div>
 </nav>
+{{#section 'js'}}
+    <script>
+        console.log('hihi')
+    </script>
+{{/section}}

@@ -7,10 +7,18 @@ import homeRouter from './routes/home.js'
 import pokemonRouter from './routes/pokemon.js'
 import userRouter from './routes/user.js'
 import methodOverride from 'method-override'
+import session from 'express-session'
 const app = express();
 const PORT = 3000
 const __dirname = path.resolve(path.dirname(''));
 
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { }
+}))
 
 app.engine('handlebars', engine({
     helpers:{

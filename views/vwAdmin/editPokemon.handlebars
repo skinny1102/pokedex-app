@@ -1,9 +1,9 @@
 <div class="container">
-    <h3 class="text-center mt-3">Thêm Pokemon</h3>
+    <h3 class="text-center mt-3">Chỉnh sửa Pokemon</h3>
     <div class="card">
     <div class="card-body bg-light mb-3">
 
-    <form action="/admin/pokemon/add" method="post">
+    <form action="/admin/pokemon/edit/{{pokemon.idPokemon}}?_method=PUT" method="post">
         <div class="d-flex w-100">
             <div class="d-flex flex-row text-danger flex-wrap">
             {{#each err}}
@@ -13,98 +13,96 @@
         </div>
         <div class="row">
             <div class="col col-6">
+                 <div class="form-group ">
+                    <label for="idPokemon" >ID Pokemon</label>
+                    <input type="text" class="form-control " name="idPokemon" id="idPokemon" value="{{pokemon.idPokemon}}"  readonly>
+                </div>
                 <div class="form-group ">
                     <label for="namePokemon" >Tên Pokemon</label>
-                    <input type="text" class="form-control " name="namePokemon" id="namePokemon" placeholder="Tên">
+                    <input type="text" class="form-control " name="namePokemon" id="namePokemon" value="{{pokemon.name}}" placeholder="Tên">
                 </div>
                 <div class="d-flex align-items-start">
                     <div class="form-group ">
                         <label for="height" >Height</label>
-                        <input type="text" class="form-control " name="height" id="height" placeholder="Inch">
+                        <input type="text" class="form-control " name="height" value="{{pokemon.height}}" id="height" placeholder="Inch">
                     </div>
                     <div class="form-group ml-1">
                         <label for="weight" >Weight</label>
-                            <input type="text" class="form-control " name="weight" id="weight" placeholder="Pound">  
+                            <input type="text" class="form-control " name="weight" value="{{pokemon.weight}}" id="weight" placeholder="Pound">  
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="form-group">
                         <label for="hp"  >Hp</label>
-                        <input type="text" class="form-control w-50 " name="hp" id="hp" placeholder="">
+                        <input type="text" class="form-control w-50 " name="hp" value="{{pokemon.hp}}" id="hp" placeholder="">
                     </div>
                     <div class="form-group ml-1 ">
                         <label for="attack" >Attack</label>
-                        <input type="text" class="form-control w-50" name="attack" id="attack" placeholder="">  
+                        <input type="text" class="form-control w-50" name="attack" value="{{pokemon.attack}}" id="attack" placeholder="">  
                     </div>
                     <div class="form-group ml-1 ">
                         <label for="defendse"  >Defendse</label>
-                        <input type="text" class="form-control w-50" name="defendse" id="defendse" placeholder="">  
+                        <input type="text" class="form-control w-50" name="defendse" value="{{pokemon.defendse}}" id="defendse" placeholder="">  
                     </div>
                     <div class="form-group ml-1">
                         <label for="speed"  >Speed</label>
-                        <input type="text" class="form-control w-50" name="speed" id="speed" placeholder="">  
+                        <input type="text" class="form-control w-50" name="speed" id="speed"  value="{{pokemon.speed}}"placeholder="">  
                     </div>
                 </div>
                  <div class="d-flex align-items-start">
                     <div class="form-group ">
                         <label for="specailAttack" >SpecailAttack</label>
-                        <input type="text" class="form-control " name="specailAttack" id="specailAttack" placeholder="">
+                        <input type="text" class="form-control " name="specailAttack" id="specailAttack" value="{{pokemon.specailAttack}}" placeholder="">
                     </div>
                     <div class="form-group ml-1">
                         <label for="specailDefendse" >SpecicalDefense</label>
-                        <input type="text" class="form-control " name="specailDefendse" id="specailDefendse" placeholder="">  
+                        <input type="text" class="form-control " name="specailDefendse" id="specailDefendse" value="{{pokemon.specicalDefense}}" placeholder="">  
                     </div>
                 </div>
              <div class="form-group">
                 <label for="description">Descripton</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description"  name="description" rows="3">{{pokemon.description}}</textarea>
             </div>
             </div>
             <div class="col col-6">
                 <div class="d-flex ">
                     <div class="form-group">
-                        <label for="idType1">Type 1</label>
-                            <select id="idType1" name="idType1" class="form-control">
+                        <label for="idType">Type </label>
+                            <select id="idType" name="idType" data-type="{{pokemon.Type}}" class="form-control">
                                 <option value ="0" selected>Choose...</option>
-                           
                                 {{#each type }}
                                     <option value="{{idType}}">{{name}}</option>
                                 {{/each}}
-                                
                         </select>
                     </div>
                 </div>
                   <div class="d-flex ">
                  <div class="form-group">
                         <label for="idCategory">Category</label>
-                            <select id="idCategory" name="idCategory" class="form-control">
+                            <select id="idCategory" name="idCategory" data-category="{{pokemon.nameCategory}}" class="form-control">
                                 <option value ="0" selected>Choose...</option>
-                                <option value ="0">Không</option>
                                 {{#each category}}
                                      <option value="{{idCategory}}">{{name}}</option>
-                                {{/each}}
-                               
+                                {{/each}}  
                         </select> 
                 </div>
                  <div class="form-group ml-1">
                         <label for="idAbility">Ability</label>
-                            <select id="idAbility" name="idAbility" class="form-control">
+                            <select id="idAbility" data-ability="{{pokemon.ability}}" name="idAbility" class="form-control">
                                 <option value ="0"selected>Choose...</option>
-                                <option value="0">Không</option>
                                 {{#each ability}}
                                      <option value="{{idAbility}}">{{name}}</option>
-                                {{/each}}
-                               
+                                {{/each}}     
                         </select> 
                 </div>
                   </div>
 
                   <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="text" class="form-control " id="image" name="image" placeholder="http://image..."> 
-                        <small id="imagehelp" class="form-text text-muted">Link hình ảnh.</small>
+                        <input type="text" class="form-control " id="image" name="image" value="{{pokemon.image}}" placeholder="http://..."> 
+                        <small id="imagehelp" class="form-text text-muted">Link hình ảnh</small>
                         <div class="img">
-                                <img src="/public/img/pokeball.png" id="imagesrc" class="rounded  d-block" alt="..." style="width:150px">
+                                <img src="{{pokemon.image}}" class="rounded  d-block" id="imagesrc" alt="..." style="width:150px">
                         </div>
                 </div>
             </div>
@@ -119,7 +117,28 @@
 </div>
 {{#section 'js'}}
     <script >
-     
+        var type = document.getElementById("idType")
+        var typename = type.getAttribute("data-Type")
+        for ( let i=0 ;i<type.children.length;i++){
+            if(type.children[i].text == typename){
+                type.selectedIndex= i
+            }
+        }
+         var category = document.getElementById("idCategory")
+        var categoryname = category.getAttribute("data-category")
+        for ( let i=0 ;i<category.children.length;i++){
+            if(category.children[i].text == categoryname){
+                category.selectedIndex= i
+            }
+        }
+
+        var ability = document.getElementById("idAbility")
+        var abilityName = ability.getAttribute("data-ability")
+        for ( let i=0 ;i<ability.children.length;i++){
+            if(ability.children[i].text == abilityName){
+               ability.selectedIndex= i
+            }
+        }
 
        var src =  document.getElementById("image").value
        var image=  document.getElementById("imagesrc")

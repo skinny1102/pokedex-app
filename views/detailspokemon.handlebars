@@ -1,3 +1,11 @@
+{{#section 'css'}}
+<style>.disable{
+        opacity: 0.1;
+        pointer-events:none;
+    }</style>
+    
+{{/section}}
+
 {{#section 'js'}}
 <script src="/public/js/chiso.js"></script>
 
@@ -6,12 +14,21 @@
             <div class="content-center">
                     {{!-- SEARCH input --}}
                         <div class="card-next-pokemon">
-                                <div class="pev-pokemon">
-                                    <p>  <span aria-hidden="true">&laquo;</span> Previous</p>
-                                </div>
-                                <div class="next-pokemon">
-                                    <p>Next <span aria-hidden="true">&raquo;</span></p>
-                                </div>
+                                <a class="pev-pokemon {{#unless cangoprev}} disable{{/unless}}" href="/pokemon/{{goprev}}">
+                                    <p ><span aria-hidden="true">&laquo;</span> Previous
+                                    <br>
+                                    <span>#{{stt goprev}}</span>
+                                    </p>
+                         
+                                </a>
+                                <a href="/pokemon/{{gonext}}"class="next-pokemon {{#unless cangonext}} disable{{/unless}}">
+                                    <p>Next <span aria-hidden="true">&raquo;</span>
+                                    <br>
+                                    <span>#{{stt gonext}}</span>
+                                    </p>
+                                
+                                </a>
+
                         </div>
                         <div class="detail-pokemon">
                             <div class="namePokemon">

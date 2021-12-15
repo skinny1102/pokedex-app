@@ -7,11 +7,11 @@
                 <div class="card-body w-100">
                     <h5 class="card-title">Pokemon</h5>
                     <p class="card-text">Số lượng pokem hiện có : </p>
-                    <p class="card-text">12356</p>
+                    <p class="card-text">{{total}}</p>
                 </div>
             </div>
         </a>
-        <a href="" class="text-decoration-none">
+        <a href="" id="taf" class="text-decoration-none">
             <div class=" card text-white bg-success mb-3 ml-4" style="max-width: 18rem; width:270px">
                 <div class="card-header"> <i class="fas fa-users"></i> Quản lý user</div>
                 <div class="card-body  w-100">
@@ -21,9 +21,13 @@
                 </div>
             </div>
         </a>
-      
-        
-
     </div>
-
 </div>
+{{#section 'js'}}
+    <script>
+           var tg= document.getElementById("taf")
+           tg.onclick = ()=>{
+               alert("Chức năng đang được cập nhật")
+           }
+    </script>
+{{/section}}

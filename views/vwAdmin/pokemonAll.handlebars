@@ -55,8 +55,7 @@
             <td>{{Type}}</td>
             <td>{{hidestring description}}</td>
             <td class="row">
-                 <button class=" btn btn-success col col-5"><i class="fas fa-edit"></i></button>   
-                 {{!-- <button class=" btn btn-danger col col-5 ml-1"></button>   --}}
+                 <a href="/admin/pokemon/edit/{{idPokemon}}" class=" btn btn-success col col-5"><i class="fas fa-edit"></i></a>   
                  <button type="button" class="btn btn-danger col col-5 ml-1 btn-delete" data-toggle="modal" 
                     data-target="#modaldelete"
                     data-id="{{idPokemon}}">
@@ -70,6 +69,15 @@
         
     </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item {{#unless go_prev}}  disabled {{/unless}}"><a class="page-link" href="/admin/pokemon/?page={{prev}}"> <span aria-hidden="true"> &laquo; </span> Previous</a></li>
+          {{#each pageItem}}
+               <li class="page-item {{#if isDisabled}}  disabled {{/if}} "><a class="page-link" href="/admin/pokemon/?page={{value}}">{{value}}</a></li>
+          {{/each}}
+        <li class="page-item {{#unless go_next}}  disabled {{/unless}} "><a class="page-link" href="/admin/pokemon/?page={{next}}">Next  <span aria-hidden="true"> &raquo;</span></a></li>
+      </ul>
+    </nav>
 </div>
 <form method="POST" id="form-modal-delete">
 </form>
