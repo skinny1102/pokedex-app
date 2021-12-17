@@ -11,6 +11,8 @@ router.get('/login' ,userController.getindexloginAdmin)
 router.post('/login' ,userController.loginAdmin)
 router.get('/logout' ,userController.logout)
 
+router.post('/changepassword' ,auth,userController.changepassword)
+
 router.get('/pokemon',auth,pokemonController.index)
 router.get('/pokemon/edit/:id',auth,pokemonController.geteditpokemon)
 router.put('/pokemon/edit/:id',auth,pokemonController.editpokemon)
@@ -18,5 +20,6 @@ router.put('/pokemon/edit/:id',auth,pokemonController.editpokemon)
 router.get('/pokemon/add',auth,pokemonController.indexAddpokemon)
 router.post('/pokemon/add',auth,pokemonController.Addpokemon)
 router.delete('/pokemon/:id',auth,pokemonController.deletePokemon)
+router.post('/pokemon/search',auth,pokemonController.searchPokemon)
 
 export default router;

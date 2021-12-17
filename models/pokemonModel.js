@@ -83,6 +83,11 @@ const model = {
                 @idAbility =${idAbility} `
                 const result = await loadDB.load(sqlstr)
                 return result.recordset
+        },
+        searchPokemon: async (keyword)=>{
+            const sqlstr = `select *from pokemonall where pokemonall.name like '%${keyword}%' or pokemonall.idPokemon like '%${keyword}%'`
+            const result = await loadDB.load(sqlstr)
+            return result.recordset
         }
 
 

@@ -4,6 +4,9 @@
     <div class="card-body bg-light mb-3">
 
     <form action="/admin/pokemon/edit/{{pokemon.idPokemon}}?_method=PUT" method="post">
+        <div class="d-flex justify-content-left">
+            <h3>Thông tin Pokemon</h3>
+        </div>
         <div class="d-flex w-100">
             <div class="d-flex flex-row text-danger flex-wrap">
             {{#each err}}
@@ -11,7 +14,9 @@
             {{/each}}
             </div>
         </div>
+        
         <div class="row">
+        
             <div class="col col-6">
                  <div class="form-group ">
                     <label for="idPokemon" >ID Pokemon</label>

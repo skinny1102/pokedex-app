@@ -46,5 +46,21 @@ class userController{
 
         res.render('vwAdmin/indexadmin',{layout:'layoutAdmin',total:recordTotal[0].total})
     }
+    async changepassword(req,res,next){
+        const user = req.session.User
+        const username = user[0].username
+        var { oldpassword,newpassword,comfirmpassword} = req.body
+         const resuld  = await modelUser.selectUser(username,oldpassword)
+         if(resuld==""){
+                res.json("Mật khẩu không chính xác")
+         }else{
+             try {
+                 await modelUser.changepassword(username,newpassword)
+                 res.redirect('/admin')
+             } catch (error) {
+                 res.json("Lỗi")
+             }
+         }
+    }
 }
 export default new userController()

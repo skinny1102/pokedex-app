@@ -199,6 +199,17 @@ class pokemonController{
                     res.json(error)
                 }
        }
+       async searchPokemon(req,res){
+            const keyword = req.body.keyword
+            const result = await modelPokemon.searchPokemon(keyword);
+            var check;
+            if(result==""){
+                check = false
+            }else{
+                check = true
+            }
+            res.render('vwAdmin/searchPokemon',{layout:'layoutAdmin',pokemon:result,check,keyword})
+       }
         
 }
 

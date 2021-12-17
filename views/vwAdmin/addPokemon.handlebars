@@ -2,8 +2,7 @@
     <h3 class="text-center mt-3">Thêm Pokemon</h3>
     <div class="card">
     <div class="card-body bg-light mb-3">
-
-    <form action="/admin/pokemon/add" method="post">
+    <form action="/admin/pokemon/add" method="post" id="formaddPokemon">
         <div class="d-flex w-100">
             <div class="d-flex flex-row text-danger flex-wrap">
             {{#each err}}
@@ -110,7 +109,7 @@
             </div>
         </div>
         <div class="mx-auto w-100 mb-3">
-            <button class="btn btn-success mx-auto d-block" style="width:100px" type="submit">Thêm</button>
+            <button class="btn btn-success mx-auto d-block" id="btn-submit" style="width:100px" >Thêm</button>
         </div>    
     </form>        
     </div>
@@ -131,5 +130,26 @@
           image.addEventListener('error',()=>{
                // dang su ly
           })
+    $('#btn-submit').on('click',(e)=>{
+        e.preventDefault()
+        var namePokemon =$("#namePokemon").val()
+        var height =$("#height").val()
+        var weight =$("#weight").val()
+        var hp =$("#hp").val()
+        var attack =$("#attack").val()
+        var description =$("#description").val()
+        var type =$("#idType1").val()
+        var idCategory =$("#idCategory").val()
+        var idAbility =$("#idAbility").val()
+        var image =$("#image").val()
+      if(namePokemon || "",height=="" || weight=="" || hp=="" || attack=="" || description=="" || type=="" || idCategory=="" || idAbility=="" || image=="" ){
+            alert("Hãy điền đầy đủ thông tin ")
+      }else{
+            $("#formaddPokemon").submit()
+      } 
+       // console.log(namePokemon,height,weight,hp,attack,description,type,idCategory,idAbility,image)
+    })
+    
+          
     </script>
 {{/section}}

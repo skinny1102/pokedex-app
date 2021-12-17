@@ -1,20 +1,11 @@
 
 {{#section 'js'}}
     <script> 
-   //   var btndelete = document.querySelectorAll('.btn-delete')
-//
-    //    btndelete.forEach((element,index)=>{
-    //       var idPk =element.getAttribute('data-id')  
-    //       $(document).on('show.bs.modal',"#modaldelete", function (e) {
-              
-   //         })
-     //   })
      var id ; 
             $('#modaldelete').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) 
                id = button.data('id')   
             })
-            
             var btndelete = document.getElementById("btn-modal-delete")
                 btndelete.onclick =()=>{
                 var formdelete= document.getElementById('form-modal-delete')
@@ -29,8 +20,8 @@
     <h3 class="text-center mt-4 mb-3">Bảng quản lý Pokemon</h3>
     <div class="d-flex justify-content-between">
        <a href="/admin/pokemon/add" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Pokemon</a> 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm tên hoặc ID" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/admin/pokemon/search" method="post">
+            <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Tìm kiếm tên hoặc ID" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -62,14 +53,11 @@
                     <i class="fas fa-trash"></i>
                 </button> 
             </td>
-          
         </tr>
         {{/each}}
-
-        
     </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="" class="d-flex justify-content-center">
       <ul class="pagination">
         <li class="page-item {{#unless go_prev}}  disabled {{/unless}}"><a class="page-link" href="/admin/pokemon/?page={{prev}}"> <span aria-hidden="true"> &laquo; </span> Previous</a></li>
           {{#each pageItem}}

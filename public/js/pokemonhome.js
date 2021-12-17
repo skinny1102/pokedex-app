@@ -11,6 +11,7 @@ $.ajax({
         console.log(err)
     }
 })
+
 //Phân trang 
 var page = 1;
 var btnNextPage = document.getElementById('btn_next')
@@ -51,7 +52,6 @@ var sortby = function (data) {
             var value = evt.target.value
            switch (value){
                 case 'none':
-                    console.log("chọn none")
                     defaultsort(data)
                     break
                 case "az":
@@ -59,6 +59,9 @@ var sortby = function (data) {
                     break
                 case "za":
                     sortbyZa(data)
+                    break
+                case "allpokemon":
+                    location.reload();
                     break
                 default:
                     // defaultsort(data)
@@ -142,6 +145,7 @@ var  updateUI_searchnull = (namePokemon)=>{
             <div class="search-null">
                 <p> Không có kết quả phù hợp cho : ${namePokemon}</p>
                 <img  src="./public/img/pokeball.png"/>
+                <a href="/" style="text-align: center;">Xem tất cả pokemon</a>
             </div> 
     `)
 }
