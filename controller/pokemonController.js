@@ -210,6 +210,11 @@ class pokemonController{
             }
             res.render('vwAdmin/searchPokemon',{layout:'layoutAdmin',pokemon:result,check,keyword})
        }
+       //[GET]
+       async getCountPokemon(req,res){
+            const countPokemon = await modelPokemon.countAllPokemon()
+            res.json(countPokemon)
+       }
         
 }
 

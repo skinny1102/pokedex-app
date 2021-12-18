@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/public/css/drawer.css">
     <link rel="stylesheet" href="/public/css/card-search.css">
     <link rel="stylesheet" href="/public/css/card-pokemon.css">
+    <link rel="stylesheet" href="/public/css/modal-search-advanced.css">
     {{{_sections.css}}}
     <title>The Offica Pokemon WebSite</title>
 </head>
@@ -21,18 +22,20 @@
         {{>footer}}
         {{_sections.modal}}
     </div>
-   
-    {{!-- <!-- <div class="drawer">
+  <div class="drawer">
         <div class="draw-login">
-          <a href="">
-                <i class="fas fa-user-circle user-i"></i><br/>
-                <p class="login-text">  Log In </p>
+          <a href="javascript:void(0)" id="searh-advanced-dra">
+               <i class="fas fa-search search-i  user-i"></i>
+                {{!-- <p class="login-text"> Seach </p> --}}
+                {{!-- <i class="fas fa-user-circle user-i"></i><br/>
+                <p class="login-text">  Log In </p> --}}
             </a>
         </div>
-        <div class="draw-search">
+        {{!-- <div class="draw-search">
             <i class="fas fa-search search-i"></i>
-        </div>
-    </div> -->
+        </div> --}}
+    </div> 
+    {{!-- ->
     <div class="container_body">
         <div class="header">
             <div class="top-nav">
@@ -92,5 +95,6 @@
 <script src="/public/js/script.js"></script>
 <script src="/public/js/menu_script.js"></script>
 <script src="/public/js/scroll_menufixed.js"></script>
+<script src="/public/js/modal-search-advanced.js"></script>
 {{{_sections.js}}}
 </html>

@@ -12,6 +12,7 @@
     box-sizing: border-box;
     padding: 10px;
 }
+
 .card-pokemon-content{
     /* background-color: aquamarine; */
     min-height: 300px;

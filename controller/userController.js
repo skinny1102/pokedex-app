@@ -43,8 +43,8 @@ class userController{
     //GET /admin
     async indexAdmin (req,res,next){
         const recordTotal = await modelPokemon.countAllPokemon();
-
         res.render('vwAdmin/indexadmin',{layout:'layoutAdmin',total:recordTotal[0].total})
+        
     }
     async changepassword(req,res,next){
         const user = req.session.User
