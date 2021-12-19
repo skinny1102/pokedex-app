@@ -88,6 +88,26 @@ const model = {
             const sqlstr = `select *from pokemonall where pokemonall.name like '%${keyword}%' or pokemonall.idPokemon like '%${keyword}%'`
             const result = await loadDB.load(sqlstr)
             return result.recordset
+        },
+        searchAdvaced : async (Type,Ability,idmin,idmax)=>{
+            var sqlstr;
+            if(Type=='Không chọn'&&Ability=='Không chọn'){
+                sqlstr = `select *from pokemonall where
+                pokemonall.idPokemon >= ${idmin} and pokemonall.idPokemon<=${idmax}`     
+            }
+            else if(Type=='Không chọn'){
+                 sqlstr = `select *from pokemonall where
+                 pokemonall.ability='${Ability}'  and pokemonall.idPokemon >= ${idmin} and pokemonall.idPokemon<=${idmax}`
+            }else if(Ability=='Không chọn'){
+                sqlstr = `select *from pokemonall where
+                pokemonall.Type='${Type}'  and pokemonall.idPokemon >= ${idmin} and pokemonall.idPokemon<=${idmax}`
+            }else if(Type!='Không chọn' && Ability!='Không chọn'){
+                sqlstr = `select *from pokemonall where
+                pokemonall.Type='${Type}' and pokemonall.ability='${Ability}'  and pokemonall.idPokemon >= ${idmin} and pokemonall.idPokemon<=${idmax}`
+            }
+            const result = await loadDB.load(sqlstr)
+
+            return result.recordset
         }
 
 

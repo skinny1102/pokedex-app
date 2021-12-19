@@ -50,3 +50,18 @@ const updateRangerUI = (rs)=>{
     const ipt = $('#max-pokemon')
     ipt.val(rs[0].total)
 }
+
+var btn_search_advanced =$("#btn-search-modal")
+btn_search_advanced.on('click',function () {
+    var type = $("#type-modal option:selected").text()
+    var ability = $('#ability-option-modal option:selected').text()
+    var minranger = $('#min-ranger').val()
+    var maxranger = $('#max-pokemon').val()
+   
+    if(minranger=="" ||maxranger==""){
+        alert("Không được để trống")
+    }else{
+     
+        window.location= `/pokemon/search?type=${type}&ability=${ability}&minranger=${minranger}&maxranger=${maxranger}`
+    }   
+})

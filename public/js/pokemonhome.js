@@ -2,11 +2,9 @@ $.ajax({
     method:'GET',
     url:'pokemon/allPokemon',
     success:(data)=>{
-        console.log(data)
         getAllPokemonHome(data);
         sortby(data);
-        searchData(data);
-
+        searchData(data); 
     },error:(err)=>{
         console.log(err)
     }
@@ -109,8 +107,7 @@ var fillData = (data,page)=>{
             return element
         }})
     updateUI(Pagedata)
-    upDateType();
-   
+    upDateType(); 
 }
 
 var updateUI = function (data) {
@@ -251,3 +248,5 @@ var showLoading = function(){
 var endLoading  = function(){
     $('.modal-loading').removeClass('enabled-loading')
 }
+
+

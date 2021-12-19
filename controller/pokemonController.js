@@ -215,6 +215,11 @@ class pokemonController{
             const countPokemon = await modelPokemon.countAllPokemon()
             res.json(countPokemon)
        }
+       async seachAvanced(req,res){
+           const { type, ability, minranger, maxranger} = req.query
+           const result = await modelPokemon.searchAdvaced(type, ability, minranger, maxranger)
+           res.json(result)
+       }
         
 }
 
